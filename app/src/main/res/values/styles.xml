@@ -1,0 +1,62 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_light</item>
+    </style>
+
+    <style name="AppBaseThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_dark</item>
+    </style>
+
+    <style name="AppThemeLight" parent="AppBaseThemeLight" />
+
+    <style name="AppThemeDark" parent="AppBaseThemeDark" />
+
+    <style name="AppThemeActionBarLight" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_light</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppThemeActionBarDark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_dark</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="WhiteAccent">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider_background_light</item>
+    </style>
+
+    <style name="menu_labels_style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/fab_label_background</item>
+    </style>
+
+</resources>

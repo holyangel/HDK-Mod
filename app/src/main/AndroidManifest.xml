@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.grarak.kerneladiutor">
+
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="cyanogenmod.permission.PUBLISH_CUSTOM_TILE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+
+    <application
+        android:allowBackup="false"
+        android:banner="@drawable/banner"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeLight">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TextActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
+            android:theme="@style/AppThemeActionBarLight" />
+        <activity
+            android:name=".KernelActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
+        <activity
+            android:name=".FileBrowserActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
+        <activity
+            android:name=".EditTextActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
+        <activity
+            android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".utils.GetPermission$PermissionActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver android:name=".services.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".services.BootService" />
+        <service android:name=".services.InitdService" />
+        <service android:name=".services.AutoHighBrightnessModeService" />
+
+        <!-- Profile Widget -->
+        <receiver android:name=".services.ProfileWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/profile_widget" />
+        </receiver>
+
+        <service
+            android:name=".services.ProfileWidget$WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <!-- HBM Widget -->
+        <receiver android:name=".services.HBMWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.kerneladiutor.mod.action.TOGGLE_HBM" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hbm_widget" />
+        </receiver>
+
+        <!-- DashClock -->
+        <service
+            android:name=".services.DashClockService"
+            android:icon="@drawable/ic_launcher_preview"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="protocolVersion"
+                android:value="1" />
+        </service>
+
+        <!-- Tasker -->
+        <activity
+            android:name=".tasker.AddProfileActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation">
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".tasker.RunProfileReceiver"
+            android:process=":background">
+
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
+            </intent-filter>
+        </receiver>
+
+        <!-- CM SDK -->
+        <receiver android:name=".services.ProfileTileReceiver">
+            <intent-filter>
+                <action android:name="com.kerneladiutor.mod.action.ACTION_TOGGLE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".services.HighBrightnessModeReceiver">
+            <intent-filter>
+                <action android:name="com.kerneladiutor.mod.action.HBM_ON" />
+                <action android:name="com.kerneladiutor.mod.action.HBM_OFF" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".services.PerAppMonitor"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.grarak.kerneladiutor.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="61872925e4455ae058115a382c80d6c48a381d6a" />
+    </application>
+
+</manifest>

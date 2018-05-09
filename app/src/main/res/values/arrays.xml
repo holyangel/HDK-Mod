@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Header -->
+    <string-array name="main_header_picture_items">
+        <item>@string/select_picture</item>
+        <item>@string/no_picture</item>
+    </string-array>
+
+    <!-- CPU -->
+    <string-array name="mc_power_saving_items">
+        <item>@string/disabled</item>
+        <item>@string/enabled</item>
+        <item>@string/aggressive</item>
+    </string-array>
+
+    <!-- CPU Hotplug -->
+    <string-array name="thunderplug_endurance_level_items">
+        <item>@string/disabled</item>
+        <item>@string/quad_core_mode</item>
+        <item>@string/dual_core_mode</item>
+    </string-array>
+
+    <string-array name="thunderplug_hp_style">
+        <item>@string/per_core_hp</item>
+        <item>@string/load_balancer</item>
+    </string-array>
+
+    <!-- Kernel Samepage Merging -->
+    <string-array name="ksm_infos">
+        <item>@string/ksm_full_scans</item>
+        <item>@string/ksm_pages_shared</item>
+        <item>@string/ksm_pages_sharing</item>
+        <item>@string/ksm_pages_unshared</item>
+        <item>@string/ksm_pages_volatile</item>
+    </string-array>
+
+    <!-- Low Memory Killer -->
+    <string-array name="lmk_names">
+        <item>@string/foreground_app</item>
+        <item>@string/visible_app</item>
+        <item>@string/secondary_server</item>
+        <item>@string/hidden_app</item>
+        <item>@string/content_providers</item>
+        <item>@string/empty_app</item>
+    </string-array>
+    <string-array name="lmk_profiles">
+        <item>@string/very_light</item>
+        <item>@string/light</item>
+        <item>@string/medium</item>
+        <item>@string/aggressive</item>
+        <item>@string/very_aggressive</item>
+    </string-array>
+
+    <!-- Backup -->
+    <string-array name="backup_menu">
+        <item>@string/restore</item>
+        <item>@string/delete</item>
+    </string-array>
+
+    <!-- Build prop -->
+    <string-array name="build_prop_menu">
+        <item>@string/edit</item>
+        <item>@string/delete</item>
+    </string-array>
+
+    <!-- Profile -->
+    <string-array name="profile_menu">
+        <item>@string/apply</item>
+        <item>@string/delete</item>
+        <item>@string/information</item>
+        <item>@string/set_per_app</item>
+    </string-array>
+
+    <!-- Misc -->
+    <string-array name="powersuspend_items">
+        <item>@string/autosleep</item>
+        <item>@string/userspace</item>
+        <item>@string/lcd_panel</item>
+        <item>@string/hybrid</item>
+    </string-array>
+
+    <!-- Recovery -->
+    <string-array name="recovery_variants">
+        <item>@string/cwm_recovery</item>
+        <item>@string/twrp</item>
+    </string-array>
+
+    <!-- Initd -->
+    <string-array name="initd_menu">
+        <item>@string/information</item>
+        <item>@string/execute</item>
+        <item>@string/edit</item>
+        <item>@string/delete</item>
+    </string-array>
+
+    <!-- Startup Commands -->
+    <string-array name="startup_commands_menu">
+        <item>@string/copy_as_shell</item>
+        <item>@string/copy_as_rc</item>
+        <item>@string/delete</item>
+    </string-array>
+
+</resources>
