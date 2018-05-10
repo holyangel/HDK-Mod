@@ -735,13 +735,12 @@ public interface Constants {
             "/sys/module/snd_soc_wcd9330/parameters/high_perf_mode"};
     String WCD_SPKR_DRV_WRND = "/sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd";
 
-    String FAUX_SOUND = "/sys/kernel/sound_control_3";
-    String HEADPHONE_GAIN[] = {"/sys/kernel/sound_control_3/gpl_headphone_gain",
-            "/sys/kernel/sound_control_3/gpl_headphone_l_gain"};
-    String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control_3/gpl_mic_gain";
-    String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_cam_mic_gain";
-    String SPEAKER_GAIN = "/sys/kernel/sound_control_3/gpl_speaker_gain";
-    String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_pa_gain";
+    String FAUX_SOUND = "/sys/kernel/sound_control";
+    String HEADPHONE_GAIN[] = {"/sys/kernel/sound_control/headphone_gain"};
+    String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control/_mic_gain";
+    String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control/cam_mic_gain";
+    String SPEAKER_GAIN = "/sys/kernel/sound_control/speaker_gain";
+    String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control/headphone_pa_gain";
 
     String FRANCO_SOUND = "/sys/devices/virtual/misc/soundcontrol";
     String HIGHPERF_MODE_ENABLE = "/sys/devices/virtual/misc/soundcontrol/highperf_enabled";
