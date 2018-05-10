@@ -36,11 +36,6 @@ public class FAQFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        CardViewItem.DCardView mMisspelledCard = new CardViewItem.DCardView();
-        mMisspelledCard.setTitle(getString(R.string.misspelled));
-        mMisspelledCard.setDescription(getString(R.string.misspelled_summary));
-        addView(mMisspelledCard);
-
         CardViewItem.DCardView mCPUFreqNotSticking = new CardViewItem.DCardView();
         mCPUFreqNotSticking.setTitle(getString(R.string.cpu_freq_not_sticking));
         mCPUFreqNotSticking.setDescription(getString(R.string.cpu_freq_not_sticking_summary));
