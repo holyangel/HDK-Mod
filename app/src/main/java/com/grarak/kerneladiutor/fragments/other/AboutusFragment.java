@@ -34,6 +34,7 @@ public class AboutusFragment extends RecyclerViewFragment {
     private final String ISSUE_LINK = "https://github.com/yoinx/kernel_adiutor/issues";
     private final String GOOGLE_PLUS_LINK = "https://plus.google.com/communities/103764146519204710337";
     private final String DONATION_LINK = "https://www.paypal.com/paypalme/HolyAngel";
+    private final String TELEGRAM_GROUP_LINK = "https://t.me/joinchat/DtGFsxJnQpVCtq456Qv8Fw";
 
     @Override
     public boolean showApplyOnBoot() {
@@ -45,7 +46,7 @@ public class AboutusFragment extends RecyclerViewFragment {
         super.init(savedInstanceState);
 
         ModificationInit();
-        googlePlusInit();
+        TelegramGroupInit();
         licenseInit();
         appSourceInit();
         featureRequestInit();
@@ -60,18 +61,18 @@ public class AboutusFragment extends RecyclerViewFragment {
         addView(mModificationCard);
     }
 
-    private void googlePlusInit() {
-        CardViewItem.DCardView mGooglePlusCard = new CardViewItem.DCardView();
-        mGooglePlusCard.setTitle(getString(R.string.google_plus_community));
-        mGooglePlusCard.setDescription(getString(R.string.google_plus_community_summary));
-        mGooglePlusCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+    private void TelegramGroupInit() {
+        CardViewItem.DCardView mTelegramGroupCard = new CardViewItem.DCardView();
+        mTelegramGroupCard.setTitle(getString(R.string.telegram_group));
+        mTelegramGroupCard.setDescription(getString(R.string.telegram_group_summary));
+        mTelegramGroupCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                Utils.launchUrl(getActivity(), GOOGLE_PLUS_LINK);
+                Utils.launchUrl(getActivity(), TELEGRAM_GROUP_LINK);
             }
         });
 
-        addView(mGooglePlusCard);
+        addView(mTelegramGroupCard);
     }
 
     private void licenseInit() {
