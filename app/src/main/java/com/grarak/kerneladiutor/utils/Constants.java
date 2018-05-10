@@ -27,7 +27,7 @@ import java.util.List;
  */
 public interface Constants {
 
-    String TAG = "Kernel Adiutor";
+    String TAG = "HDK Mod";
     String VERSION_NAME = BuildConfig.VERSION_NAME;
     int VERSION_CODE = BuildConfig.VERSION_CODE;
     String PREF_NAME = "prefs";
