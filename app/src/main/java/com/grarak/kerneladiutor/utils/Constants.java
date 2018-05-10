@@ -773,6 +773,9 @@ public interface Constants {
     String CUSTOM_CHARGING_RATE = CHARGE_RATE + "/custom_current";
     String LOW_POWER_VALUE= "sys/module/battery_current_limit/parameters/low_battery_value";
 
+    String CHARGE_FULL_DESIGN= "sys/class/power_supply/battery/charge_full_design";
+    String CYCLE_COUNT= "sys/class/power_supply/battery/cycle_count";
+
     // C-States
     String C0STATE = "/sys/module/msm_pm/modes/cpu0/wfi/idle_enabled";
     String C1STATE = "/sys/module/msm_pm/modes/cpu0/retention/idle_enabled";

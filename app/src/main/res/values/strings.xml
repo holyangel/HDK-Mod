@@ -651,6 +651,10 @@
     <string name="charge_level_ac_summary">Set MAX mA allowed while charging via AC (0 = stock charging logic)</string>
     <string name="charge_level_usb">USB Charge Level</string>
     <string name="charge_level_usb_summary">Set MAX mA allowed while charging via USB (0 = stock charging logic)</string>
+    <string name="charge_full_design">Charge Full Design</string>
+    <string name="charge_full_design_ma">Ma</string>
+    <string name="cycle_count">Charge Cycle Count</string>
+    <string name="cycle_count_cycles">Cycles</string>
 
     <string name="blx">Battery Life eXtender</string>
     <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>

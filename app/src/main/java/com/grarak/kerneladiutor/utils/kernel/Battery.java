@@ -131,6 +131,21 @@ public class Battery implements Constants {
         Control.runCommand(String.valueOf(value), USB_CHARGE_LEVEL, Control.CommandType.GENERIC, context);
     }
 
+    public static boolean hasChargeFullDesign() {
+        return Utils.existFile(CHARGE_FULL_DESIGN);
+    }
+
+    public static int getChargeFullDesign() {
+        return Utils.stringToInt(Utils.readFile(CHARGE_FULL_DESIGN));
+    }
+
+    public static boolean hasCycleCount() {
+        return Utils.existFile(CYCLE_COUNT);
+    }
+
+    public static int getCycleCount() {
+        return Utils.stringToInt(Utils.readFile(CYCLE_COUNT));
+    }
 
     public static void activateArchPower(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", ARCH_POWER, Control.CommandType.GENERIC, context);

@@ -59,7 +59,7 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCardV
 
     private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
 
-    private PopupCardView.DPopupCard mPowerSuspendModeCard;
+    private PopupCardView.DPopupCard mPowerSuspendModeCard, mChargeFullDesignCard, mCycleCountCard;
     private SwitchCardView.DSwitchCard mOldPowerSuspendStateCard;
     private SeekBarCardView.DSeekBarCard mNewPowerSuspendStateCard;
 
@@ -77,6 +77,8 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCardV
         if (Battery.hasChargeLevelControl()) chargeLevelControlInit();
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
+        if (Battery.hasChargeFullDesign()) chargefullInit();
+        if (Battery.hasCycleCount()) cyclecountInit();
 
         try {
             getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -127,6 +129,32 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCardV
         mBatteryTemperature.setTitle(getString(R.string.battery_temperature));
 
         addView(mBatteryTemperature);
+    }
+
+    private void chargefullInit() {
+        if (Battery.hasChargeFullDesign()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 4000; i++) list.add((i) + getString(R.string.charge_full_design_ma));
+
+        mChargeFullDesignCard = new PopupCardView.DPopupCard(list);
+        mChargeFullDesignCard.setTitle(getString(R.string.charge_full_design));
+        mChargeFullDesignCard.setItem((Battery.getChargeFullDesign()));
+
+        addView(mChargeFullDesignCard);
+        }
+    }
+
+    private void cyclecountInit() {
+        if (Battery.hasCycleCount()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 4000; i++) list.add((i) + getString(R.string.cycle_count_cycles));
+
+            mCycleCountCard = new PopupCardView.DPopupCard(list);
+            mCycleCountCard.setTitle(getString(R.string.cycle_count));
+            mCycleCountCard.setItem((Battery.getCycleCount()));
+
+        addView(mCycleCountCard);
+        }
     }
 
     private void forceFastChargeInit() {
