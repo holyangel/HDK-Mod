@@ -156,7 +156,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             SwitchCardView.DSwitchCard mUpdateCheckCard = new SwitchCardView.DSwitchCard();
             mUpdateCheckCard.setTitle(getString(R.string.update_check));
             mUpdateCheckCard.setDescription(getString(R.string.update_check_summary));
-            mUpdateCheckCard.setChecked(Utils.getBoolean("updatecheck", true, getActivity()));
+            mUpdateCheckCard.setChecked(Utils.getBoolean("updatecheck", false, getActivity()));
             mUpdateCheckCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
                 @Override
                 public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
