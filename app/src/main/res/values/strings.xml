@@ -78,6 +78,7 @@
     <string name="wake_controls">Wake Controls</string>
     <string name="sound">Sound</string>
     <string name="battery">Power and Battery</string>
+    <string name="battery_charging_current">Battery Charging Current[unsure]</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
@@ -967,9 +968,9 @@
     <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
     <string name="feature_not_appearing_summary">Features depend on the kernel.</string>
     <string name="feature_function">What does feature x do?</string>
-    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do a proper research before playing with your expensive hardware.</string>
+    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do proper research before playing with your expensive hardware.</string>
     <string name="add_new_features">Could you add feature x and y?</string>
-    <string name="add_new_features_summary">That\'s hard to say. I try to add all features, but it\'s hard to make this app universal for all devices. I only have a Samsung Galaxy S4 (I9500), an HTC Desire 816 and recently got a OnePlus 2, so don\'t blame me if features don\'t get merged immediately.</string>
+    <string name="add_new_features_summary">That\'s hard to say. I try to add all features for my kernel, I\'m not trying to make this app universal for all devices. I only use the OP3.</string>
 
     <!-- About us -->
     <string name="license">License</string>
@@ -1002,7 +1003,7 @@
     <string name="modification">Modified build of Kernel Adiutor</string>
     <string name="modification_summary">This application is being modified for various custom features that are not included in the original Kernel Adiutor.</string>
 
-    <string name="accessibility_service_label">KA Per App Monitor</string>
+    <string name="accessibility_service_label">HDK-Mod Per App Monitor</string>
     <string name="accessibility_service_desc">Service to monitor when foreground app changes for per-app profile loading</string>
 
 </resources>
