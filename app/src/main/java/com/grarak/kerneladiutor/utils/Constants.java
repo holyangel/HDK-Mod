@@ -744,7 +744,7 @@ public interface Constants {
 
     String FAUX_SOUND = "/sys/kernel/sound_control";
     String HEADPHONE_GAIN[] = {"/sys/kernel/sound_control/headphone_gain"};
-    String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control/_mic_gain";
+    String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control/mic_gain";
     String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control/cam_mic_gain";
     String SPEAKER_GAIN = "/sys/kernel/sound_control/speaker_gain";
     String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control/headphone_pa_gain";
