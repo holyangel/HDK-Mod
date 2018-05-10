@@ -32,8 +32,8 @@ public class AboutusFragment extends RecyclerViewFragment {
 
     private final String APP_SOURCE = "https://github.com/yoinx/kernel_adiutor/";
     private final String ISSUE_LINK = "https://github.com/yoinx/kernel_adiutor/issues";
-    private final String DONATION_LINK = "https://www.paypal.com/paypalme/JosephSchubert";
     private final String GOOGLE_PLUS_LINK = "https://plus.google.com/communities/103764146519204710337";
+    private final String DONATION_LINK = "https://www.paypal.com/paypalme/HolyAngel";
 
     @Override
     public boolean showApplyOnBoot() {
