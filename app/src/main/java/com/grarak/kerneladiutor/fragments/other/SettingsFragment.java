@@ -61,7 +61,7 @@ public class SettingsFragment extends RecyclerViewFragment {
 
     @Override
     public boolean showApplyOnBoot() {
-        return false;
+        return true;
     }
 
     @Override
