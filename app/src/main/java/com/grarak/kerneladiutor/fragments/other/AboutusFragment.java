@@ -30,9 +30,8 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 public class AboutusFragment extends RecyclerViewFragment {
 
-    private final String APP_SOURCE = "https://github.com/yoinx/kernel_adiutor/";
-    private final String ISSUE_LINK = "https://github.com/yoinx/kernel_adiutor/issues";
-    private final String GOOGLE_PLUS_LINK = "https://plus.google.com/communities/103764146519204710337";
+    private final String APP_SOURCE = "https://github.com/holyangel/HDK-Mod";
+    private final String ISSUE_LINK = "https://github.com/holyangel/HDK-Mod/issues";
     private final String DONATION_LINK = "https://www.paypal.com/paypalme/HolyAngel";
     private final String TELEGRAM_GROUP_LINK = "https://t.me/joinchat/DtGFsxJnQpVCtq456Qv8Fw";
 
