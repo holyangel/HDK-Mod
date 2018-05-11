@@ -50,6 +50,9 @@ public class Battery {
     private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
     private static final String CUSTOM_CURRENT = CHARGE_RATE + "/custom_current";
 
+    private static final String CHARGE_FULL_DESIGN = "sys/class/power_supply/battery/charge_full_design";
+    private static final String CYCLE_COUNT = "sys/class/power_supply/battery/cycle_count";
+	
     private int mCapacity;
 
     private Battery(Context context) {
@@ -104,6 +107,22 @@ public class Battery {
         return Utils.existFile(BLX);
     }
 
+	public static boolean hasChargeFullDesign() {
+        return Utils.existFile(CHARGE_FULL_DESIGN); 
+    } 
+ 
+    public static int getChargeFullDesign() {
+        return Utils.strToInt(Utils.readFile(CHARGE_FULL_DESIGN));
+    }
+
+    public static boolean hasCycleCount() {
+        return Utils.existFile(CYCLE_COUNT);
+    }
+
+    public static int getCycleCount() {
+        return Utils.strToInt(Utils.readFile(CYCLE_COUNT));
+    }
+	
     public void enableForceFastCharge(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", FORCE_FAST_CHARGE), FORCE_FAST_CHARGE, context);
     }

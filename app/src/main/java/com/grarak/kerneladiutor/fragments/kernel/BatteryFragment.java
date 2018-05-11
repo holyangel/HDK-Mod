@@ -31,10 +31,14 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.recyclerview.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.grarak.kerneladiutor.views.recyclerview.ValueView;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +54,11 @@ public class BatteryFragment extends RecyclerViewFragment {
     private StatsView mVoltage;
 
     private int mBatteryLevel;
+
     private int mBatteryVoltage;
+
+    private DescriptionView mchargefulldesignView;
+    private DescriptionView mcyclecountView;
 
     @Override
     protected void init() {
@@ -66,11 +74,17 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (mBattery.hasForceFastCharge()) {
             forceFastChargeInit(items);
         }
+        if (Battery.hasChargeFullDesign()) {
+            chargefullInit(items);
+        }
+        if (Battery.hasCycleCount()) {
+            cyclecountInit(items);
+        }
         if (mBattery.hasBlx()) {
             blxInit(items);
         }
         chargeRateInit(items);
-    }
+        }
 
     @Override
     protected void postInit() {
@@ -96,7 +110,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 
         items.add(mVoltage);
     }
-
+	
     private void forceFastChargeInit(List<RecyclerViewItem> items) {
         SwitchView forceFastCharge = new SwitchView();
         forceFastCharge.setTitle(getString(R.string.usb_fast_charge));
@@ -107,6 +121,30 @@ public class BatteryFragment extends RecyclerViewFragment {
 
         items.add(forceFastCharge);
     }
+
+    private void chargefullInit(List<RecyclerViewItem> items) {
+        if (Battery.hasChargeFullDesign()) {
+            int cfd = Battery.getChargeFullDesign();
+
+            mchargefulldesignView = new DescriptionView();
+            mchargefulldesignView.setTitle(getString(R.string.charge_full_design));
+            mchargefulldesignView.setSummary(String.valueOf(cfd));
+
+            items.add(mchargefulldesignView);
+        }
+    }
+
+        private void cyclecountInit(List<RecyclerViewItem> items) {
+            if (Battery.hasCycleCount()) {
+                int cc = Battery.getCycleCount();
+
+                mcyclecountView = new DescriptionView();
+                mcyclecountView.setTitle(getString(R.string.cycle_count));
+                mcyclecountView.setSummary(String.valueOf(cc));
+
+                items.add(mcyclecountView);
+            }
+        }
 
     private void blxInit(List<RecyclerViewItem> items) {
         List<String> list = new ArrayList<>();

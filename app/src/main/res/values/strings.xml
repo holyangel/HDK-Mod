@@ -567,6 +567,10 @@
     <string name="charge_rate">Charge Rate</string>
     <string name="charging_current">Charging Current</string>
     <string name="charging_current_summary">Set charging current. Caution: Exceeding 1250mA may damage your charging driver.</string>
+    <string name="charge_full_design">Charge Full Design</string>
+    <string name="charge_full_design_ma">Ma</string>
+    <string name="cycle_count">Charge Cycle Count</string>
+    <string name="cycle_count_cycles">Cycles</string>
 
     <!-- LED -->
     <string name="fade">Fade</string>
