@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Kernel Adiutor</string>
+    <string name="app_name">HDK-Mod</string>
 
     <string name="checking_info">Checking info…</string>
     <string name="checking_root">Checking root access</string>
@@ -25,7 +25,7 @@
     <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me. You need internet access!</string>
     <string name="pirated">Seems like the donation app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
     <string name="donate">Donate</string>
-    <string name="donate_summary">This feature is only available when the donation app is installed! Don\'t worry though. Because this app is open source you can easily build it yourself and remove this check. But I hope you support developers anyway. Thanks for using Kernel Adiutor! Once you bought the donation app you have to restart Kernel Adiutor in order to enable all features.</string>
+    <string name="donate_summary">This feature is only available when the donation app is installed! Don\'t worry though.</string>
     <string name="donate_nope">I won\'t fall for this scam!</string>
     <string name="donate_yes">I love this app. Must donate!</string>
     <string name="ad_here">Your advertisement could be here</string>
@@ -159,13 +159,13 @@
     <string name="cpu_usage_string">%s CPU Usage</string>
     <string name="no_offline_core">You can\'t offline this core!</string>
     <string name="cpu_max_freq">CPU Maximum Frequency</string>
-    <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>
+    <string name="cpu_max_freq_summary">Set the maximum frequency</string>
     <string name="cpu_min_freq">CPU Minimum Frequency</string>
-    <string name="cpu_min_freq_summary">Set the minimum frequency the CPU scales down to.</string>
-    <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
+    <string name="cpu_min_freq_summary">Set the minimum frequency</string>
+    <string name="cpu_max_screen_off_freq">CPU Maximum Screen-Off Frequency</string>
     <string name="cpu_max_screen_off_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="cpu_governor">CPU Governor</string>
-    <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
+    <string name="cpu_governor_summary">Current CPU Governor</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
     <string name="governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
     <string name="cpu_governor_tunables_read_error">Failed to read current governor of CPU.\n\nIf you are using a QCOM big.LITTLE device this is a known problem. The system forces the CPU to turn off cores making it extremely hard to read out CPU specific stats. Try to select this option again. The CPU sometimes refuses to turn on a core.</string>
@@ -176,7 +176,7 @@
     <string name="disabled">Disabled</string>
     <string name="enabled">Enabled</string>
     <string name="aggressive">Aggressive</string>
-    <string name="power_saving_wq">Schedule workqueues on awake CPUs to save power.</string>
+    <string name="power_saving_wq">Power-Efficient Workqueues.</string>
     <string name="cfs_scheduler_policy">CFS Scheduler Policy</string>
     <string name="cfs_scheduler_policy_summary">Policy decides the CFS scheduler how to balance tasks onto different CPU unit.</string>
     <string name="cpu_quiet">CPUQuiet</string>
@@ -193,7 +193,7 @@
     <string name="input_interval_summary">Minimum interval a CPU is boosted when input is detected.</string>
     <string name="input_boost_freq">Input Boost Frequency</string>
     <string name="input_boost_freq_core">Input Boost Frequency Core %d</string>
-    <string name="input_boost_freq_summary">CPU frequency to be boosted to this frequency upon input detection.</string>
+    <string name="input_boost_freq_summary">CPU frequency to be used upon input detection.</string>
     <string name="wakeup_boost">Wakeup Boost</string>
     <string name="wakeup_boost_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
     <string name="hotplug_boost">Hotplug Boost</string>
@@ -898,7 +898,7 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me">Hi, I\'m Willi Ye aka Grarak, a 19 year old student living in Vienna. I\'ve been developing on Android for quite a long time. Beside Kernel Adiutor I\'m also maintaining LineageOS for few devices and working on ParanoidAndroid. So please understand if I don\'t find the time to update this application.</string>
+    <string name="about_me">Hi, I\'m Miguel Martinez aka HolyAngel. I\'ve been developing kernel\'s and most recently ROM\'s on Android for quite a long time. App\'s are not my thing tho so please understand if I don\'t update this application. I have forked this from Willi Ye aka Grarak, to work on my kernel(s) specifically.</string>
     <string name="software_licenses">Software Licenses</string>
     <string name="software_licenses_summary">View licenses</string>
 
@@ -916,7 +916,7 @@
     <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
     <string name="feature_not_appearing_summary">Only features which are supported by your device are shown!</string>
     <string name="feature_function">What does feature x do?</string>
-    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do a proper research before playing with your expensive hardware.</string>
+    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do proper research before playing with your expensive hardware.</string>
     <string name="add_new_features">Could you add feature x and y?</string>
-    <string name="add_new_features_summary">That\'s hard to say. I try to add all features, but it\'s hard to make this app universal for all devices.</string>
+    <string name="add_new_features_summary">That\'s hard to say. I try to add all features for my kernel, I\'m not trying to make this app universal for all devices. I only use the OP3.</string>
 </resources>
