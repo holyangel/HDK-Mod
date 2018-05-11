@@ -63,6 +63,7 @@ public class Sound {
     private static final String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/volume_boost";
 
     private static final String HEADPHONE_FLAR = "/sys/kernel/sound_control/headphone_gain";
+    private static final String HEADPHONE_PA_FLAR = "/sys/kernel/sound_control/headphone_pa_gain";
     private static final String MICROPHONE_FLAR = "/sys/kernel/sound_control/mic_gain";
     private static final String SPEAKER_FLAR = "/sys/kernel/sound_control/speaker_gain";
 
@@ -399,7 +400,7 @@ public class Sound {
                 || hasHandsetMicrophoneGain() || hasCamMicrophoneGain() || hasSpeakerGain()
                 || hasHeadphonePowerAmpGain() || hasLockOutputGain() || hasLockMicGain()
                 || hasMicrophoneGain() || hasVolumeGain() || hasHeadphoneFlar()
-                || hasMicrophoneFlar() || hasHighPerfAudioEnable();
+                || hasHeadphonepaFlar() || hasMicrophoneFlar() || hasHighPerfAudioEnable();
     }
 
     private long getChecksum(int a, int b) {
@@ -447,6 +448,32 @@ public class Sound {
 
     public boolean hasHeadphoneFlar() {
         return Utils.existFile(HEADPHONE_FLAR);
+    }
+
+    public void setHeadphonepaFlar(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= -40 && newGain <= 20) {
+            fauxRun(value + " " + value, HEADPHONE_PA_FLAR, HEADPHONE_PA_FLAR, context);
+        }
+    }
+
+    public String getHeadphonepaFlar() {
+        String value = Utils.readFile(HEADPHONE_PA_FLAR);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 216 && gain <= 255) {
+            return String.valueOf(gain - 256);
+        }
+        return "";
+    }
+
+    public List<String> getHeadphonepaFlarLimits() {
+        return mFlarHpLimits;
+    }
+
+    public boolean hasHeadphonepaFlar() {
+        return Utils.existFile(HEADPHONE_PA_FLAR);
     }
 
     public void setMicrophoneFlar(String value, Context context) {
