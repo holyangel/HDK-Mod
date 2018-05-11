@@ -53,6 +53,9 @@ public class SoundFragment extends RecyclerViewFragment {
         if (mSound.hasHighPerfModeEnable()) {
             highPerfModeEnableInit(items);
         }
+        if (mSound.hasHighPerfAudioEnable()) {
+            highPerfAudioEnableInit(items);
+        }
         if (mSound.hasHeadphoneGain()) {
             headphoneGainInit(items);
         }
@@ -109,6 +112,16 @@ public class SoundFragment extends RecyclerViewFragment {
                 -> mSound.enableHighPerfMode(isChecked, getActivity()));
 
         items.add(highPerfMode);
+    }
+
+    private void highPerfAudioEnableInit(List<RecyclerViewItem> items) {
+        SwitchView highPerfAudio = new SwitchView();
+        highPerfAudio.setSummary(getString(R.string.headset_highperf_audio));
+        highPerfAudio.setChecked(mSound.isHighPerfAudioEnabled());
+        highPerfAudio.addOnSwitchListener((switchView, isChecked)
+                -> mSound.enableHighPerfAudio(isChecked, getActivity()));
+
+        items.add(highPerfAudio);
     }
 
     private void headphoneGainInit(List<RecyclerViewItem> items) {
