@@ -74,6 +74,9 @@ public class Sound {
     private final List<String> mFlarLimits = new ArrayList<>();
     private final List<String> mFlarHpLimits = new ArrayList<>();
 
+    private static final String PDESIRE_ENABLE = "/sys/module/snd_soc_wcd9335/parameters/pdesireaudio_uhqa_mode";
+    private static final String PDESIREAB_ENABLE = "/sys/module/snd_soc_wcd9335/parameters/pdesireaudio_class_ab_mode";
+
     {
         mSpeakerGainFiles.add(SPEAKER_GAIN);
         mSpeakerGainFiles.add(SPEAKER_BOOST);
@@ -490,6 +493,30 @@ public class Sound {
 
     public boolean hasMicrophoneFlar() {
         return Utils.existFile(MICROPHONE_FLAR);
+    }
+
+    public void enablePDesire(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", PDESIRE_ENABLE), PDESIRE_ENABLE, context);
+    }
+
+    public boolean isPDesireEnabled() {
+        return Utils.readFile(PDESIRE_ENABLE).equals("1");
+    }
+
+    public boolean hasPDesireEnable() {
+        return Utils.existFile(PDESIRE_ENABLE);
+    }
+
+    public void enablePDesireAB(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", PDESIREAB_ENABLE), PDESIREAB_ENABLE, context);
+    }
+
+    public boolean isPDesireABEnabled() {
+        return Utils.readFile(PDESIREAB_ENABLE).equals("1");
+    }
+
+    public boolean hasPDesireABEnable() {
+        return Utils.existFile(PDESIREAB_ENABLE);
     }
 
 }

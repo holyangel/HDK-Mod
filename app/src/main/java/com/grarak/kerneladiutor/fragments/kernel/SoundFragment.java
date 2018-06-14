@@ -53,6 +53,12 @@ public class SoundFragment extends RecyclerViewFragment {
         if (mSound.hasHighPerfModeEnable()) {
             highPerfModeEnableInit(items);
         }
+        if (mSound.hasPDesireEnable()) {
+            PDesireEnableInit(items);
+        }
+        if (mSound.hasPDesireABEnable()) {
+            PDesireABEnableInit(items);
+        }
         if (mSound.hasHighPerfAudioEnable()) {
             highPerfAudioEnableInit(items);
         }
@@ -95,6 +101,9 @@ public class SoundFragment extends RecyclerViewFragment {
         if (mSound.hasVolumeGain()) {
             volumeGainInit(items);
         }
+        if (mSound.hasVolumeGain()) {
+            volumeGainInit(items);
+        }
     }
 
     private void soundControlEnableInit(List<RecyclerViewItem> items) {
@@ -115,6 +124,26 @@ public class SoundFragment extends RecyclerViewFragment {
                 -> mSound.enableHighPerfMode(isChecked, getActivity()));
 
         items.add(highPerfMode);
+    }
+
+    private void PDesireEnableInit(List<RecyclerViewItem> items) {
+        SwitchView PDesire = new SwitchView();
+        PDesire.setSummary(getString(R.string.pdesire_uhqa));
+        PDesire.setChecked(mSound.isPDesireEnabled());
+        PDesire.addOnSwitchListener((switchView, isChecked)
+                -> mSound.enablePDesire(isChecked, getActivity()));
+
+        items.add(PDesire);
+    }
+
+    private void PDesireABEnableInit(List<RecyclerViewItem> items) {
+        SwitchView PDesireAB = new SwitchView();
+        PDesireAB.setSummary(getString(R.string.pdesire_ab));
+        PDesireAB.setChecked(mSound.isPDesireABEnabled());
+        PDesireAB.addOnSwitchListener((switchView, isChecked)
+                -> mSound.enablePDesireAB(isChecked, getActivity()));
+
+        items.add(PDesireAB);
     }
 
     private void highPerfAudioEnableInit(List<RecyclerViewItem> items) {

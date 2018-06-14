@@ -557,6 +557,10 @@
     <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
     <string name="microphone_gain">Microphone Gain</string>
     <string name="volume_gain">Volume Gain</string>
+    <string name="pdesire_uhqa">PDesire Ultra High Quality Mode</string>
+    <string name="pdesire_ab">PDesire Class AB Mode</string>
+    <string name="dig_core_enable">Digital Core Collapse Enable</string>
+    <string name="dig_core_timer">Digital Core Collapse Timer</string>
 
     <!-- Battery -->
     <string name="level">Level</string>
