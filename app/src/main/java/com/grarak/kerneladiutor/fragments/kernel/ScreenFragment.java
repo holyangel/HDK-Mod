@@ -329,6 +329,16 @@ public class ScreenFragment extends RecyclerViewFragment {
 
             items.add(sRGB);
         }
+
+        if (mCalibration.hasDCIP3()) {
+            SwitchView DCI_P3 = new SwitchView();
+            DCI_P3.setSummary(getString(R.string.dcip3));
+            DCI_P3.setChecked(mCalibration.isDCIP3Enabled());
+            DCI_P3.addOnSwitchListener((switchView, isChecked)
+                    -> mCalibration.enableDCIP3(isChecked, getActivity()));
+
+            items.add(DCI_P3);
+        }
     }
 
     private void kgammaInit(List<RecyclerViewItem> items) {

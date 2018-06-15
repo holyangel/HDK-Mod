@@ -72,6 +72,7 @@ public class Calibration {
     private static final String HBM = "/sys/class/graphics/fb0/hbm";
 
     private final List<String> mSRGB = new ArrayList<>();
+    private final List<String> mDCIP3 = new ArrayList<>();
 
     private final List<String> mColors = new ArrayList<>();
     private final List<String> mColorEnables = new ArrayList<>();
@@ -80,6 +81,7 @@ public class Calibration {
     {
         mSRGB.add("/sys/class/graphics/fb0/SRGB");
         mSRGB.add("/sys/class/graphics/fb0/srgb");
+        mDCIP3.add("/sys/class/graphics/fb0/dci_p3");
 
         mColors.add(KCAL_CTRL);
         mColors.add(DIAG0_POWER);
@@ -102,6 +104,7 @@ public class Calibration {
     }
 
     private String SRGB;
+    private String DCIP3;
 
     private String COLOR;
     private String COLOR_ENABLE;
@@ -112,6 +115,13 @@ public class Calibration {
         for (String file : mSRGB) {
             if (Utils.existFile(file)) {
                 SRGB = file;
+                break;
+            }
+        }
+
+        for (String file : mDCIP3) {
+            if (Utils.existFile(file)) {
+                DCIP3 = file;
                 break;
             }
         }
@@ -143,6 +153,19 @@ public class Calibration {
 
     public boolean hasSRGB() {
         return SRGB != null;
+    }
+
+    public void enableDCIP3(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", DCIP3), DCIP3, context);
+    }
+
+    public boolean isDCIP3Enabled() {
+        String value = Utils.readFile(DCIP3);
+        return value.equals("1") || value.contains("mode = 1");
+    }
+
+    public boolean hasDCIP3() {
+        return DCIP3 != null;
     }
 
     public void enableScreenHBM(boolean enable, Context context) {
@@ -359,7 +382,7 @@ public class Calibration {
 
     public boolean supported() {
         return hasColors() || hasInvertScreen() || hasSaturationIntensity() || hasScreenHue()
-                || hasScreenValue() | hasScreenContrast() || hasScreenHBM() || hasSRGB();
+                || hasScreenValue() | hasScreenContrast() || hasScreenHBM() || hasSRGB() || hasDCIP3();
     }
 
     private void run(String command, String id, Context context) {
