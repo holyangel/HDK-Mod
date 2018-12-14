@@ -42,7 +42,7 @@ public class Calibration {
         return sInstance;
     }
 
-    private static final String KCAL = "/sys/devices/platform/kcal_ctrl.0";
+    private static final String KCAL = "/sys/module/msm_drm/parameters";
     private static final String KCAL_CTRL = KCAL + "/kcal";
     private static final String KCAL_CTRL_CTRL = KCAL + "/kcal_ctrl";
     private static final String KCAL_CTRL_ENABLE = KCAL + "/kcal_enable";
