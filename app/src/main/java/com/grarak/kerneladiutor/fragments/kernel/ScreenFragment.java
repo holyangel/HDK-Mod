@@ -339,6 +339,63 @@ public class ScreenFragment extends RecyclerViewFragment {
 
             items.add(DCI_P3);
         }
+
+        if (mCalibration.hasScreenBlue()) {
+            SeekBarView screenBlue = new SeekBarView();
+            screenBlue.setTitle(getString(R.string.screen_blue));
+            screenBlue.setMax(256);
+            screenBlue.setProgress(mCalibration.getScreenBlue());
+            screenBlue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mCalibration.setScreenBlue(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(screenBlue);
+        }
+
+        if (mCalibration.hasScreenGreen()) {
+            SeekBarView screenGreen = new SeekBarView();
+            screenGreen.setTitle(getString(R.string.screen_green));
+            screenGreen.setMax(256);
+            screenGreen.setProgress(mCalibration.getScreenGreen());
+            screenGreen.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mCalibration.setScreenGreen(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(screenGreen);
+        }
+
+        if (mCalibration.hasScreenRed()) {
+            SeekBarView screenRed = new SeekBarView();
+            screenRed.setTitle(getString(R.string.screen_red));
+            screenRed.setMax(256);
+            screenRed.setProgress(mCalibration.getScreenRed());
+            screenRed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mCalibration.setScreenRed(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(screenRed);
+        }
     }
 
     private void kgammaInit(List<RecyclerViewItem> items) {

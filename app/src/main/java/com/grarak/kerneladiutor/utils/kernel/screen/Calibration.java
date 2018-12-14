@@ -52,6 +52,9 @@ public class Calibration {
     private static final String KCAL_CTRL_HUE = KCAL + "/kcal_hue";
     private static final String KCAL_CTRL_VAL = KCAL + "/kcal_val";
     private static final String KCAL_CTRL_CONT = KCAL + "/kcal_cont";
+    private static final String KCAL_CTRL_BLUE = KCAL + "/kcal_blue";
+    private static final String KCAL_CTRL_GREEN = KCAL + "/kcal_green";
+    private static final String KCAL_CTRL_RED = KCAL + "/kcal_red";
 
     private static final String DIAG0 = "/sys/devices/platform/DIAG0.0";
     private static final String DIAG0_POWER = DIAG0 + "/power_rail";
@@ -255,6 +258,42 @@ public class Calibration {
 
     public void setMinColor(int value, Context context) {
         run(Control.write(String.valueOf(value), KCAL_CTRL_MIN), KCAL_CTRL_MIN, context);
+    }
+
+    public int getScreenBlue() {
+        return Utils.strToInt(Utils.readFile(KCAL_CTRL_BLUE));
+    }
+
+    public boolean hasScreenBlue() {
+        return Utils.existFile(KCAL_CTRL_BLUE);
+    }
+
+    public void setScreenBlue(int value, Context context) {
+        run(Control.write(String.valueOf(value), KCAL_CTRL_BLUE), KCAL_CTRL_BLUE, context);
+    }
+
+    public int getScreenGreen() {
+        return Utils.strToInt(Utils.readFile(KCAL_CTRL_GREEN));
+    }
+
+    public boolean hasScreenGreen() {
+        return Utils.existFile(KCAL_CTRL_GREEN);
+    }
+
+    public void setScreenGreen(int value, Context context) {
+        run(Control.write(String.valueOf(value), KCAL_CTRL_GREEN), KCAL_CTRL_GREEN, context);
+    }
+
+    public int getScreenRed() {
+        return Utils.strToInt(Utils.readFile(KCAL_CTRL_RED));
+    }
+
+    public boolean hasScreenRed() {
+        return Utils.existFile(KCAL_CTRL_RED);
+    }
+
+    public void setScreenRed(int value, Context context) {
+        run(Control.write(String.valueOf(value), KCAL_CTRL_RED), KCAL_CTRL_RED, context);
     }
 
     public int getMinColor() {

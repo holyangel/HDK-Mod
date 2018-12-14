@@ -440,6 +440,9 @@
     <string name="srgb">sRGB</string>
     <string name="dcip3">DCI_P3</string>
     <string name="gamma">Gamma</string>
+    <string name="screen_blue">Blue</string>
+    <string name="screen_green">Green</string>
+    <string name="screen_red">Red</string>
     <string name="red_greys">Red Greys</string>
     <string name="red_mids">Red Mids</string>
     <string name="red_blacks">Red Blacks</string>
