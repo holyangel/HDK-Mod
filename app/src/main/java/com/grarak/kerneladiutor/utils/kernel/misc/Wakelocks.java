@@ -26,19 +26,207 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
- * Created by willi on 30.06.16.
+ * Created by sunilpaulmathew <sunil.kde@gmail.com> on August 01, 2018
+ *
+ * Based on the original implementation by Willi Ye <williye97@gmail.com>
  */
+
 public class Wakelocks {
 
+    private static final String BOEFFLAWL = "/sys/devices/virtual/misc/boeffla_wakelock_blocker";
+    private static final String VERSION = BOEFFLAWL + "/version";
+    private static final String DEBUG = BOEFFLAWL + "/debug";
+    private static final String WAKELOCK_BLOCKER = BOEFFLAWL + "/wakelock_blocker";
+    private static final String WAKELOCK_BLOCKER_DEFAULT = BOEFFLAWL + "/wakelock_blocker_default";
+    private static final String WAKELOCK_SOURCES = "/sys/kernel/debug/wakeup_sources";
     private static final String WLAN_RX_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
     private static final String MSM_HSIC_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
     private static final String BCMDHD_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
     private static final String WLAN_CTRL_DIVIDER = "/sys/module/bcmdhd/parameters/wlctrl_divide";
+
+    private static final String WL_PARENT_1 = "/sys/module/wakeup/parameters";
+    private static final String WL_PARENT_2 = "/sys/module/smb135x_charger/parameters";
+
+    private static final List<Wakelock> sWakelocks = new ArrayList<>();
+
+    static {
+        sWakelocks.add(new Wakelock("/sys/module/smb135x_charger/parameters/use_wlock",
+                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_smb135x_wake_ws",
+                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_si_ws",
+                R.string.sensor_ind_wakelock, R.string.sensor_ind_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_msm_hsic_ws",
+                R.string.msm_hsic_host_wakelock, R.string.msm_hsic_host_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_rx_wake",
+                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws",
+                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_ctrl_wake",
+                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws",
+                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_wake",
+                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_ws",
+                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
+                R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws",
+                R.string.ipa_wakelock, R.string.ipa_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws",
+                R.string.netlink_wakelock, R.string.netlink_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws",
+                R.string.qcom_rx_wakelock, R.string.qcom_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws",
+                R.string.timerfd_wakelock, R.string.timerfd_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws",
+                R.string.wlan_extscan_wl_ws_wakelock, R.string.wlan_extscan_wl_ws_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws",
+                R.string.wlan_ws_wakelock, R.string.wlan_ws_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
+                R.string.bluedroid_timer_wakelock, R.string.bluedroid_timer_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_sensorhub_wl",
+                R.string.wkl_sensorhub, R.string.wkl_sensorhub_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ssp_wl",
+                R.string.wkl_ssp, R.string.wkl_ssp_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bcmdhd4359_wl",
+                R.string.wkl_gps, R.string.wkl_gps_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_wl",
+                R.string.wkl_wireless, R.string.wkl_wireless_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_wl",
+                R.string.wkl_bluetooth, R.string.wkl_bluetooth_summary));
+    }
+
+    // Wakelocks Order: 0-Name, 1-Time, 2-Wakeups
+    private static int mWakelockOrder = 1;
+
+    public static String getboefflawlVersion(){
+        return Utils.readFile(VERSION);
+    }
+
+    public static void CopyWakelockBlockerDefault(){
+        try {
+            String wbd = Utils.readFile(WAKELOCK_BLOCKER_DEFAULT);
+            if (!wbd.contentEquals("")) {
+                String list = "";
+                try {
+                    list = Utils.readFile(WAKELOCK_BLOCKER);
+                    if (list.contentEquals("")) {
+                        list = wbd;
+                    } else {
+                        list = list + ";" + wbd;
+                    }
+                } catch (Exception ignored) {
+                }
+
+                RootUtils.runCommand("echo '" + list + "' > " + WAKELOCK_BLOCKER);
+                RootUtils.runCommand("echo '" + "" + "' > " + WAKELOCK_BLOCKER_DEFAULT);
+            }
+        }catch(Exception ignored){
+        }
+    }
+
+    public static void setWakelockBlocked(String wakelock, Context context){
+        String list = "";
+        try {
+            list = Utils.readFile(WAKELOCK_BLOCKER);
+            if (list.contentEquals("")) {
+                list = wakelock;
+            } else {
+                list += ";" + wakelock;
+            }
+        } catch (Exception ignored){
+        }
+
+        run(Control.write(list, WAKELOCK_BLOCKER), WAKELOCK_BLOCKER, context);
+    }
+
+    public static void setWakelockAllowed(String wakelock, Context context){
+        String list = "";
+        try {
+            String[] wakes = Utils.readFile(WAKELOCK_BLOCKER).split(";");
+            for(String wake : wakes){
+                if(!wake.contentEquals(wakelock)){
+                    if (list.contentEquals("")) {
+                        list = wake;
+                    } else {
+                        list += ";" + wake;
+                    }
+                }
+            }
+        } catch (Exception ignored){
+        }
+
+        run(Control.write(list, WAKELOCK_BLOCKER), WAKELOCK_BLOCKER, context);
+    }
+
+    public static int getWakelockOrder(){
+        return mWakelockOrder;
+    }
+
+    public static void setWakelockOrder(int order){
+        mWakelockOrder = order;
+    }
+
+    public static List<WakeLockInfo> getWakelockInfo(){
+
+        List<WakeLockInfo> wakelocksinfo = new ArrayList<>();
+
+        try {
+            String[] lines = Utils.readFile(WAKELOCK_SOURCES).split("\\r?\\n");
+            for (String line : lines) {
+                if (!line.startsWith("name")) {
+                    String[] wl = line.split("\\s+");
+                    wakelocksinfo.add(new WakeLockInfo(wl[0], Integer.valueOf(wl[6]), Integer.valueOf(wl[3])));
+                }
+            }
+        }catch (Exception ignored) {
+        }
+
+        String[] blocked = null;
+
+        try {
+            blocked = Utils.readFile(WAKELOCK_BLOCKER).split(";");
+        }catch (Exception ignored){
+        }
+
+        if( blocked != null){
+            for (String name_bloqued : blocked) {
+                for (WakeLockInfo wakeLockInfo : wakelocksinfo) {
+                    if (wakeLockInfo.wName.equals(name_bloqued)) {
+                        wakeLockInfo.wState = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        Collections.sort(wakelocksinfo, (w2, w1) -> {
+            if(mWakelockOrder == 0) {
+                return w2.wName.compareTo(w1.wName);
+            } else if ( mWakelockOrder == 1){
+                return Integer.compare(w1.wTime, w2.wTime);
+            } else if (mWakelockOrder == 2){
+                return Integer.compare(w1.wWakeups, w2.wWakeups);
+            }
+            return 0;
+        });
+
+        return wakelocksinfo;
+    }
+
+    public static boolean boefflawlsupported() {
+        return Utils.existFile(BOEFFLAWL);
+    }
 
     public static class Wakelock {
 
@@ -69,10 +257,9 @@ public class Wakelocks {
                 return context.getString(mTitle);
             }
 
-            return Utils.upperCaseEachWord(mPath.substring(mPath.lastIndexOf('/') + 1)
-                    .replace("enable_", "")
-                    .replace("_ws", "")
-                    .replace("_", " "));
+            String[] paths = mPath.split("/");
+            return Utils.upperCaseEachWord(paths[paths.length - 1].replace("enable_", "")
+                    .replace("_ws", "").replace("_", " "));
         }
 
         public void enable(boolean enable, Context context) {
@@ -90,39 +277,6 @@ public class Wakelocks {
             return mExists;
         }
 
-    }
-
-    private static final List<Wakelock> sWakelocks = new ArrayList<>();
-
-    static {
-        sWakelocks.add(new Wakelock("/sys/module/smb135x_charger/parameters/use_wlock",
-                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_smb135x_wake_ws",
-                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_si_ws",
-                R.string.sensor_ind_wakelock, R.string.sensor_ind_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_msm_hsic_ws",
-                R.string.msm_hsic_host_wakelock, R.string.msm_hsic_host_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_rx_wake",
-                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws",
-                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_ctrl_wake",
-                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws",
-                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_wake",
-                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_ws",
-                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
-                R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws"));
     }
 
     public static void setBCMDHDDivider(int value, Context context) {
@@ -181,6 +335,15 @@ public class Wakelocks {
 
     public static List<Wakelock> getWakelocks() {
         return sWakelocks;
+    }
+
+    public static boolean hasotherWakeLocks() {
+        return Utils.existFile(WL_PARENT_1) || Utils.existFile(WL_PARENT_2);
+    }
+
+    public static boolean supported() {
+        return boefflawlsupported() || hasWlanctrlDivider() || hasWlanrxDivider() || hasMsmHsicDivider()
+	|| hasBCMDHDDivider() || hasotherWakeLocks();
     }
 
     private static void run(String command, String id, Context context) {
